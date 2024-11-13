@@ -1,0 +1,18 @@
+image: atlassian/default-image:3
+
+pipelines:
+  branches:
+    dev:
+      - step:
+          name: Deploy to Dev
+          script:
+            - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+            - eval $(ssh-agent -s)
+            - echo $DEV_SSH_KEY | base64 --decode | ssh-add -
+            - mkdir -p ~/.ssh
+            - chmod 700 ~/.ssh
+            - ssh-keyscan -H $DEV_SERVER >> ~/.ssh/known_hosts
+            - echo "Deploying to the development server"
+            - echo "$DEV_SERVER"
+            - ssh ubuntu@$DEV_SERVER 'bash -s' < deploy-dev.sh
+
