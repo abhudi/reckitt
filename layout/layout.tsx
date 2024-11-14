@@ -19,7 +19,7 @@ import TopLinerLoader from '@/components/TopLineLoader';
 import MyFileUpload from '@/components/MyFileUpload';
 
 const Layout = React.memo(({ children }: ChildContainerProps) => {
-    const { user, isScroll } = useAppContext()
+    const { user, isScroll } = useAppContext();
     const { layoutConfig, layoutState, setLayoutState, onMenuToggle } = useContext(LayoutContext);
 
     const { setRipple } = useContext(PrimeReactContext);
@@ -128,17 +128,17 @@ const Layout = React.memo(({ children }: ChildContainerProps) => {
         'p-ripple-disabled': !layoutConfig.ripple
     });
 
-    const menuToggleClass = classNames('menu-toggle-icon bg-blue-500', {
+    const menuToggleClass = classNames('menu-toggle-icon bg-pink-500', {
         'toogle-overlay': layoutConfig.menuMode === 'overlay',
         'toogle-static': layoutConfig.menuMode === 'static',
         'toogle-static-inactive': layoutState.staticMenuDesktopInactive && layoutConfig.menuMode === 'static',
         'toogle-overlay-active': layoutState.overlayMenuActive,
-        'toogle-mobile-active': layoutState.staticMenuMobileActive,
+        'toogle-mobile-active': layoutState.staticMenuMobileActive
     });
 
     const iconClass = classNames('pi', {
         'pi-angle-left': !layoutState.staticMenuDesktopInactive && layoutConfig.menuMode === 'static',
-        'pi-angle-right': layoutState.staticMenuDesktopInactive && layoutConfig.menuMode === 'static',
+        'pi-angle-right': layoutState.staticMenuDesktopInactive && layoutConfig.menuMode === 'static'
     });
 
     if (!user) {
@@ -146,20 +146,20 @@ const Layout = React.memo(({ children }: ChildContainerProps) => {
             <>
                 <Preloader />
             </>
-        )
+        );
     }
 
     return (
         <React.Fragment>
             <TopLinerLoader />
             <div className={containerClass}>
-                <MyFileUpload/>
+                <MyFileUpload />
                 <AppTopbar ref={topbarRef} />
-                {/* {
-                    !layoutState.isMobile && <div className={menuToggleClass} onClick={onMenuToggle}>
+                {!layoutState.isMobile && (
+                    <div className={menuToggleClass} onClick={onMenuToggle}>
                         <i className={iconClass}></i>
                     </div>
-                } */}
+                )}
                 <div ref={sidebarRef} className="layout-sidebar">
                     <AppSidebar />
                 </div>

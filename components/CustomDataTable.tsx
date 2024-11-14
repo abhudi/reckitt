@@ -1,4 +1,3 @@
-
 import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { Button } from 'primereact/button';
 import { Panel } from 'primereact/panel';
@@ -12,37 +11,37 @@ import { GetCall, PostCall } from '@/app/api/ApiKit';
 import { CustomResponse } from '@/types';
 
 interface ColumnItem extends ColumnProps {
-    dbField?: string
+    dbField?: string;
 }
 
 interface ExtraButton {
-    icon: any,
-    onClick?: (item: any) => void
+    icon: any;
+    onClick?: (item: any) => void;
 }
 
 interface CustomTableOption extends DataTableBaseProps<DataTableValueArray> {
-    title?: string,
-    data: any[],
-    limit: number,
-    page: number,
-    columns: ColumnItem[],
-    tree?: boolean,
-    filter?: boolean,
-    include?: string[],
-    isEdit?: boolean,
-    isDelete?: boolean,
-    isView?: boolean,
-    extraButtons?: ExtraButton[],
-    onLoad?: (item: any) => void,
-    onView?: (item: any) => void,
-    onEdit?: (item: any) => void,
-    onDelete?: (item: any) => void
+    title?: string;
+    data: any[];
+    limit: number;
+    page: number;
+    columns: ColumnItem[];
+    tree?: boolean;
+    filter?: boolean;
+    include?: string[];
+    isEdit?: boolean;
+    isDelete?: boolean;
+    isView?: boolean;
+    extraButtons?: ExtraButton[];
+    onLoad?: (item: any) => void;
+    onView?: (item: any) => void;
+    onEdit?: (item: any) => void;
+    onDelete?: (item: any) => void;
 }
 
 export interface CustomDataTableRef {
-    refreshData: () => any,
-    getCurrentPagerState: () => any,
-    updatePagination: (page: any) => any,
+    refreshData: () => any;
+    getCurrentPagerState: () => any;
+    updatePagination: (page: any) => any;
     updatePaginationAfterDelete: (key: string, rowId: any) => void;
 }
 
@@ -60,17 +59,17 @@ const CustomDataTable = forwardRef<CustomDataTableRef, CustomTableOption>((props
 
     useImperativeHandle(ref, () => ({
         getCurrentPagerState: () => {
-            return lazyParams
+            return lazyParams;
         },
         refreshData: () => {
-            setLazyParams({ ...lazyParams })
+            setLazyParams({ ...lazyParams });
         },
         updatePagination: (page: number) => {
             setLazyParams({
                 ...lazyParams,
                 page: page,
-                first: page * props.limit,
-            })
+                first: page * props.limit
+            });
         },
         updatePaginationAfterDelete: (key: string, rowId: number) => {
             const updatedData = props.data.filter((item) => item[key] !== rowId);
@@ -78,14 +77,13 @@ const CustomDataTable = forwardRef<CustomDataTableRef, CustomTableOption>((props
                 setLazyParams({
                     ...lazyParams,
                     page: props.page - 1,
-                    first: (props.page - 1) * props.limit,
-                })
+                    first: (props.page - 1) * props.limit
+                });
             } else {
-                setLazyParams({ ...lazyParams })
+                setLazyParams({ ...lazyParams });
             }
         }
     }));
-
 
     const calculateTableHeight = () => {
         const headerHeight = 250;
@@ -115,9 +113,9 @@ const CustomDataTable = forwardRef<CustomDataTableRef, CustomTableOption>((props
             include: props.include || []
         };
         if (props.onLoad) {
-            props.onLoad(params)
+            props.onLoad(params);
         }
-    }
+    };
 
     const convertFiltersToQueryParams = (filters: any) => {
         const filterParams: any = {};
@@ -130,8 +128,8 @@ const CustomDataTable = forwardRef<CustomDataTableRef, CustomTableOption>((props
     };
 
     const headerTemplate = (options: any) => {
-        return <div></div>
-    }
+        return <div></div>;
+    };
 
     const onPage = (event: DataTablePageEvent) => {
         setLazyParams({
@@ -147,34 +145,28 @@ const CustomDataTable = forwardRef<CustomDataTableRef, CustomTableOption>((props
             ...event,
             first: 0
         });
-    }
+    };
 
     const renderActions = (item: any) => {
         return (
-            <div className='flex'>
-                {
-                    props?.extraButtons && props?.extraButtons?.length > 0 && props.extraButtons.map((btn: ExtraButton, index: any) => <Button key={`ExtraButton${index}`} type="button" icon={btn.icon} className="p-button-sm p-button-text" onClick={() => btn.onClick && btn.onClick(item)} />)
-                }
-                {
-                    props.isView && <Button type="button" icon={'pi pi-eye'} className="p-button-sm p-button-text" onClick={() => props.onView && props.onView(item)} />
-                }
-                {
-                    props.isEdit && <Button type="button" icon={'pi pi-pencil'} className="p-button-sm p-button-text" onClick={() => props.onEdit && props.onEdit(item)} />
-                }
-                {
-                    props.isDelete && <Button type="button" icon={'pi pi-trash'} className="p-button-sm p-button-text" style={{ color: 'red' }} onClick={() => props.onDelete && props.onDelete(item)} />
-                }
+            <div className="flex">
+                {props?.extraButtons &&
+                    props?.extraButtons?.length > 0 &&
+                    props.extraButtons.map((btn: ExtraButton, index: any) => <Button key={`ExtraButton${index}`} type="button" icon={btn.icon} className="p-button-sm p-button-text" onClick={() => btn.onClick && btn.onClick(item)} />)}
+                {props.isView && <Button type="button" icon={'pi pi-eye'} className="p-button-sm p-button-text" onClick={() => props.onView && props.onView(item)} />}
+                {props.isEdit && <Button type="button" icon={'pi pi-pencil'} className="p-button-sm p-button-text" onClick={() => props.onEdit && props.onEdit(item)} />}
+                {props.isDelete && <Button type="button" icon={'pi pi-trash'} className="p-button-sm p-button-text" style={{ color: 'red' }} onClick={() => props.onDelete && props.onDelete(item)} />}
             </div>
-        )
-    }
+        );
+    };
 
     const getCurrentParams = () => {
-        return lazyParams
+        return lazyParams;
     };
 
     // console.log('lazyParams', lazyParams)
     return (
-        <div className='card erp-table-container mt-4'>
+        <div className="card reckitt-table-container mt-4">
             <DataTable
                 lazy
                 paginator
@@ -186,7 +178,7 @@ const CustomDataTable = forwardRef<CustomDataTableRef, CustomTableOption>((props
                 rows={props.limit}
                 value={props.data}
                 filterDisplay={props.filter ? 'row' : undefined}
-                className='erp-table'
+                className="reckitt-table"
                 pageLinkSize={3}
                 scrollHeight={tableHeight}
                 onPage={onPage}
@@ -196,17 +188,15 @@ const CustomDataTable = forwardRef<CustomDataTableRef, CustomTableOption>((props
                 sortOrder={lazyParams.sortOrder}
                 tableStyle={{ minWidth: '30rem' }}
                 paginatorTemplate={'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink'}
-                currentPageReportTemplate="Showing {first} to {last} of {totalRecords}">
-                {
-                    props.columns.map((item: ColumnProps, index: any) => <Column key={index} {...item}></Column>)
-                }
-                {
-                    (props.isEdit || props.isView || props.isDelete || props.extraButtons?.length) && <Column alignFrozen="right" frozen body={renderActions} ></Column>
-                }
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+            >
+                {props.columns.map((item: ColumnProps, index: any) => (
+                    <Column key={index} {...item}></Column>
+                ))}
+                {(props.isEdit || props.isView || props.isDelete || props.extraButtons?.length) && <Column alignFrozen="right" frozen body={renderActions}></Column>}
             </DataTable>
         </div>
-    )
+    );
 });
 
 export default CustomDataTable;
-

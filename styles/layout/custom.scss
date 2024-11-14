@@ -149,12 +149,13 @@ $spacing-sizes: (
 .menu-toggle-icon {
   position: fixed;
   left: 238px;
-  top: 22rem;
+  top: 10rem;
 
   z-index: 1000;
   // background-color: #fff;
   border-radius: 20px;
   background-color: var(--color-black);
+  cursor: pointer;
 
   i {
     padding: 5px;
@@ -171,7 +172,7 @@ $spacing-sizes: (
 }
 
 .toogle-static-inactive {
-  left: 0.9em;
+  left: 3.5em;
   transition: left $transitionDuration;
 }
 
@@ -408,7 +409,7 @@ $spacing-sizes: (
   color: var(--primary-color);
 }
 
-.erp-tree {
+.reckitt-tree {
   padding: 0;
   border: none;
 }
@@ -482,7 +483,7 @@ $spacing-sizes: (
   }
 
   span {
-    color: var(--text-white) !important;
+    color:#6c757d !important;
   }
 }
 
@@ -515,14 +516,14 @@ $spacing-sizes: (
   border-radius: 4px;
 }
 
-.erp-table-container {
+.reckitt-table-container {
   padding: 0px;
   border-radius: 5px;
   background-color: #fff;
   overflow: hidden;
 }
 
-.erp-table {
+.reckitt-table {
 
   .p-datatable-header,
   .p-treetable-header {

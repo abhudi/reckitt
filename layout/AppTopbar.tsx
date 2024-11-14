@@ -31,9 +31,11 @@ const AppTopbar = forwardRef<AppTopbarRef>((props, ref) => {
                 return (
                     <div className="p-menuitem cursor-pointer" style={{ alignItems: 'center', padding: 10 }}>
                         <div style={{ marginLeft: 10 }}>
-                            <span style={{ fontWeight: 'bold' }}>{get(user, 'displayName', 'U')}</span>
+                            {/* <span style={{ fontWeight: 'bold' }}>{get(user, 'displayName', 'U')}</span> */}
+                            <span style={{ fontWeight: 'bold' }}>Admin</span>
                             <br></br>
-                            <span style={{ color: 'gray' }}>{get(user, 'email')}</span>
+                            {/* <span style={{ color: 'gray' }}>{get(user, 'email')}</span> */}
+                            <span style={{ color: 'gray' }}>abhi@gmail.com</span>
                         </div>
                     </div>
                 );

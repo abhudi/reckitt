@@ -73,7 +73,7 @@ const AppMenuitem = (props: AppMenuItemProps) => {
         <li>
             {item && item.items && item?.items?.length > 0 ? (
                 <StyleClass nodeRef={btnRef4} selector="@next" enterClassName="hidden" enterActiveClassName="slidedown" leaveToClassName="hidden" leaveActiveClassName="slideup">
-                    <div ref={btnRef4} className="p-ripple p-3 pl-1 flex align-items-center justify-content-between text-white cursor-pointer custom-menu-item" onClick={itemClick}>
+                    <div ref={btnRef4} className="p-ripple p-3 pl-1 flex align-items-center justify-content-between text-slate-400 cursor-pointer custom-menu-item" onClick={itemClick}>
                         <div>
                             {item && item.icon != null && <i className={item.icon + ' mr-2 text-xl'}></i>}
                             {(layoutState.isMobile || !layoutState.staticMenuDesktopInactive) && <span className="font-medium text-lg">{item?.label}</span>}
@@ -84,7 +84,7 @@ const AppMenuitem = (props: AppMenuItemProps) => {
                     </div>
                 </StyleClass>
             ) : item?.url ? (
-                <Link href={item?.url} className="p-ripple p-3 pl-1 flex align-items-center justify-content-between text-white cursor-pointer custom-menu-item">
+                <Link href={item?.url} className="p-ripple p-3 pl-1 flex align-items-center justify-content-between text-slate-400 cursor-pointer custom-menu-item">
                     <div>
                         {item && item.icon != null && <i className={item.icon + ' mr-2 text-xl'}></i>}
                         {(layoutState.isMobile || !layoutState.staticMenuDesktopInactive) && <span className="font-medium text-lg">{item?.label}</span>}

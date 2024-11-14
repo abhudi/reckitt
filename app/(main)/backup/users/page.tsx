@@ -786,7 +786,7 @@ const UserPage = () => {
                                                                     suggestions={autoFilteredValue}
                                                                     completeMethod={searchCountry}
                                                                     field="name"
-                                                                    className="erp-tree w-full mt-2"
+                                                                    className="reckitt-tree w-full mt-2"
                                                                 />
                                                             </div>
                                                         </div>
@@ -809,7 +809,7 @@ const UserPage = () => {
                                                                     suggestions={autoFilteredValue}
                                                                     completeMethod={searchCountry}
                                                                     field="name"
-                                                                    className="erp-tree w-full mt-2"
+                                                                    className="reckitt-tree w-full mt-2"
                                                                 />
                                                             </div>
                                                         </div>

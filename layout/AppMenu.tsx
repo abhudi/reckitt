@@ -695,7 +695,7 @@ const AppMenu = () => {
                                 })}
                             </ul>
                         </div>
-                        {!layoutState.isMobile && (
+                        {/* {!layoutState.isMobile && (
                             <div className="mt-auto">
                                 <a
                                     v-ripple
@@ -706,7 +706,7 @@ const AppMenu = () => {
                                     <i className={iconClass}></i>
                                 </a>
                             </div>
-                        )}
+                        )} */}
                     </div>
                 </div>
             </div>
