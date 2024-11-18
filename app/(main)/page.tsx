@@ -21,7 +21,7 @@ const lineData: ChartData = {
             fill: false,
             backgroundColor: '#2f4860',
             borderColor: '#2f4860',
-            tension: 0.4
+            tension: 0.01
         },
         {
             label: 'Second Dataset',
@@ -29,7 +29,7 @@ const lineData: ChartData = {
             fill: false,
             backgroundColor: '#00bb7e',
             borderColor: '#00bb7e',
-            tension: 0.4
+            tension: 0.01
         }
     ]
 };
@@ -105,8 +105,7 @@ const Dashboard = () => {
         setLineOptions(lineOptions);
     };
 
-    useEffect(() => {
-    }, []);
+    useEffect(() => {}, []);
 
     useEffect(() => {
         if (layoutConfig.colorScheme === 'light') {
