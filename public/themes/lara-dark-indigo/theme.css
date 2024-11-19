@@ -1120,13 +1120,13 @@
     border-radius: 6px;
   }
   .p-inputtext:enabled:hover {
-    border-color: #818cf8;
+    border-color: #DF177C;
   }
   .p-inputtext:enabled:focus {
     outline: 0 none;
     outline-offset: 0;
     box-shadow: 0 0 0 0.2rem rgba(129, 140, 248, 0.2);
-    border-color: #818cf8;
+    border-color: #DF177C;
   }
   .p-inputtext.p-invalid.p-component {
     border-color: #FCA5A5;

@@ -12,7 +12,7 @@
   --surface-f: #ffffff;
   --text-color: #4b5563;
   --text-color-secondary: #6b7280;
-  --primary-color: #5aa445;
+  --primary-color: #DF177C;
   --secondary-color: #000000;
   --text-black:#000;
   --primary-color-text: #ffffff;
@@ -1289,14 +1289,14 @@
   }
 
   .p-inputtext:enabled:hover {
-    border-color: #0068e3;
+    border-color: #DF177C;
   }
 
   .p-inputtext:enabled:focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem #C7D2FE;
-    border-color: #0068e3;
+    box-shadow: 0 0 0 0.2rem #faaed4;
+    border-color: #DF177C;
   }
 
   .p-inputtext.p-invalid.p-component {
@@ -3372,21 +3372,21 @@
   }
 
   .p-datatable .p-sortable-column.p-highlight {
-    background: #EEF2FF;
-    color: #4338CA;
+    background: #fad3e7;
+    color: #000000;
   }
 
   .p-datatable .p-sortable-column.p-highlight .p-sortable-column-icon {
-    color: #4338CA;
+    color: #000000;
   }
 
   .p-datatable .p-sortable-column.p-highlight:not(.p-sortable-disabled):hover {
-    background: #EEF2FF;
-    color: #4338CA;
+    background: #fad3e7;
+    color: #000000;
   }
 
   .p-datatable .p-sortable-column.p-highlight:not(.p-sortable-disabled):hover .p-sortable-column-icon {
-    color: #4338CA;
+    color: #000000;
   }
 
   .p-datatable .p-sortable-column:focus-visible {

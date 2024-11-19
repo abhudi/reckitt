@@ -149,13 +149,15 @@ const CustomDataTable = forwardRef<CustomDataTableRef, CustomTableOption>((props
 
     const renderActions = (item: any) => {
         return (
-            <div className="flex">
+            <div className="flex gap-3">
                 {props?.extraButtons &&
                     props?.extraButtons?.length > 0 &&
-                    props.extraButtons.map((btn: ExtraButton, index: any) => <Button key={`ExtraButton${index}`} type="button" icon={btn.icon} className="p-button-sm p-button-text" onClick={() => btn.onClick && btn.onClick(item)} />)}
-                {props.isView && <Button type="button" icon={'pi pi-eye'} className="p-button-sm p-button-text" onClick={() => props.onView && props.onView(item)} />}
-                {props.isEdit && <Button type="button" icon={'pi pi-pencil'} className="p-button-sm p-button-text" onClick={() => props.onEdit && props.onEdit(item)} />}
-                {props.isDelete && <Button type="button" icon={'pi pi-trash'} className="p-button-sm p-button-text" style={{ color: 'red' }} onClick={() => props.onDelete && props.onDelete(item)} />}
+                    props.extraButtons.map((btn: ExtraButton, index: any) => (
+                        <Button key={`ExtraButton${index}`} type="button" icon={btn.icon} className="p-button-lg p-button-text bg-pink-50 hover:bg-pink-100" onClick={() => btn.onClick && btn.onClick(item)} />
+                    ))}
+                {props.isView && <Button type="button" icon={'pi pi-eye'} className="p-button-lg p-button-text bg-pink-50 hover:bg-pink-100" onClick={() => props.onView && props.onView(item)} />}
+                {props.isEdit && <Button type="button" icon={'pi pi-user-edit'} className="p-button-lg p-button-text bg-pink-50 hover:bg-pink-100" onClick={() => props.onEdit && props.onEdit(item)} />}
+                {props.isDelete && <Button type="button" icon={'pi pi-trash'} className="p-button-lg p-button-text bg-pink-50 hover:bg-pink-100" style={{ color: 'red' }} onClick={() => props.onDelete && props.onDelete(item)} />}
             </div>
         );
     };
@@ -178,7 +180,7 @@ const CustomDataTable = forwardRef<CustomDataTableRef, CustomTableOption>((props
                 rows={props.limit}
                 value={props.data}
                 filterDisplay={props.filter ? 'row' : undefined}
-                className="reckitt-table"
+                className="reckitt-table p-datatable-thead"
                 pageLinkSize={3}
                 scrollHeight={tableHeight}
                 onPage={onPage}

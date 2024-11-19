@@ -1,42 +1,46 @@
-import React, { useState } from 'react';
-import { Button } from 'primereact/button';
+import React from 'react';
+import { Steps } from 'primereact/steps';
 
-const Stepper = () => {
-    const [currentStep, setCurrentStep] = useState(1);
+interface StepperProps {
+    currentStep: number;
+    completedSteps: boolean[];
+}
 
-    const steps = [
-        { number: 1, label: 'Supplier Details' },
-        { number: 2, label: 'Manufacture Details' },
-        { number: 3, label: 'Compliance Requirement' }
+const Stepper: React.FC<StepperProps> = ({ currentStep, completedSteps }) => {
+    // Remove internal activeIndex state and rely on currentStep from props
+    const itemRenderer = (item: any, itemIndex: any) => {
+        const isActiveItem = currentStep - 1 === itemIndex; // Determine if the step is the current one
+        const backgroundColor = isActiveItem ? 'var(--primary-color)' : 'var(--surface-b)';
+        const textColor = isActiveItem ? 'var(--surface-b)' : 'var(--text-color-secondary)';
+
+        return (
+            <span
+                className="inline-flex align-items-center justify-content-center align-items-center border-circle border-primary border-1 h-3rem w-3rem z-1 cursor-pointer"
+                style={{ backgroundColor: backgroundColor, color: textColor, marginTop: '-25px' }}
+            >
+                <i className={`${item.icon} text-xl`} />
+            </span>
+        );
+    };
+
+    const items = [
+        {
+            icon: 'pi pi-user',
+            template: (item: any) => itemRenderer(item, 0)
+        },
+        {
+            icon: 'pi pi-calendar',
+            template: (item: any) => itemRenderer(item, 1)
+        },
+        {
+            icon: 'pi pi-check',
+            template: (item: any) => itemRenderer(item, 2)
+        }
     ];
 
-    const handleNext = () => {
-        setCurrentStep((prevStep) => Math.min(prevStep + 1, 3));
-    };
-
-    const handlePrevious = () => {
-        setCurrentStep((prevStep) => Math.max(prevStep - 1, 1));
-    };
-
     return (
-        <div className="flex flex-col items-center">
-            {/* Stepper Container */}
-            <div className="flex items-center justify-center mb-6">
-                {steps.map((step, index) => (
-                    <div key={index} className="flex items-center">
-                        {/* Circle with Step Number */}
-                        <div className={`flex items-center justify-center w-10 h-10 rounded-full border-2 ${currentStep >= step.number ? 'bg-pink-500 text-white border-pink-500' : 'bg-transparent text-gray-400 border-gray-300'}`}>
-                            <span className="font-bold">{step.number}</span>
-                        </div>
-
-                        {/* Step Label */}
-                        <span className={`ml-3 ${currentStep >= step.number ? 'text-gray-800' : 'text-gray-400'}`}>{step.label}</span>
-
-                        {/* Line Separator */}
-                        {index < steps.length - 1 && <div className={`w-20 h-px mx-4 ${currentStep > step.number ? 'bg-pink-500' : 'bg-gray-200'}`}></div>}
-                    </div>
-                ))}
-            </div>
+        <div className="card">
+            <Steps model={items} activeIndex={currentStep - 1} readOnly={false} className="m-2 pt-4" />
         </div>
     );
 };

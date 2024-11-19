@@ -201,7 +201,7 @@ $spacing-sizes: (
 
 .headerless {
   .p-datatable-thead {
-    background-color: #fff;
+    background-color: #000000;
     border-bottom: 1px solid var(--primary-color) !important;
   }
 
@@ -545,9 +545,11 @@ $spacing-sizes: (
     padding: 0.5rem 1rem !important;
   }
 
-  .p-paginator,
-  .p-datatable-thead {
+  .p-paginator{
     background-color: #f9fafb !important;
+  }
+  .p-datatable-thead {
+    background-color: #000000 !important;
   }
 }
 

@@ -1,38 +1,52 @@
 'use client';
 import React, { useState } from 'react';
 import { Button } from 'primereact/button';
-import { ProgressBar } from 'primereact/progressbar';
 import { Checkbox } from 'primereact/checkbox';
 import { InputText } from 'primereact/inputtext';
 import Stepper from '@/components/Stepper';
+import { Dropdown } from 'primereact/dropdown';
 
 const CreateSupplierPage = () => {
+    const totalSteps = 3;
     const [currentStep, setCurrentStep] = useState(1);
+    const [completedSteps, setCompletedSteps] = useState<boolean[]>(Array(totalSteps).fill(false));
+    // Form fields state
     const [supplierId, setSupplierId] = useState('');
     const [supplierName, setSupplierName] = useState('');
     const [manufacturerName, setManufacturerName] = useState('');
     const [complianceStatus, setComplianceStatus] = useState(false);
-    // State for each checkbox
+    const [selectedProcurementCategory, setSelectedProcurementCategory] = useState(null);
+
     const [checked, setChecked] = useState({
         gmp: false,
         gdp: false,
         reach: false,
         iso: false
     });
+
+    // Navigation Handlers
     const handleNext = () => {
-        if (currentStep < 3) setCurrentStep(currentStep + 1);
+        if (currentStep < totalSteps) {
+            const newCompletedSteps = [...completedSteps];
+            newCompletedSteps[currentStep - 1] = true;
+            setCompletedSteps(newCompletedSteps);
+            setCurrentStep((prevStep) => prevStep + 1);
+        }
     };
 
     const handlePrevious = () => {
-        if (currentStep > 1) setCurrentStep(currentStep - 1);
+        if (currentStep > 1) {
+            const newCompletedSteps = [...completedSteps];
+            newCompletedSteps[currentStep - 2] = false; // Revert previous step to incomplete
+            setCompletedSteps(newCompletedSteps);
+            setCurrentStep((prevStep) => prevStep - 1);
+        }
     };
 
     const handleSubmit = () => {
-        // Handle submission logic here
         console.log('Form submitted', { supplierId, supplierName, manufacturerName, complianceStatus });
     };
 
-    // Handle checkbox change
     const handleCheckboxChange = (event: any) => {
         const { name, checked } = event.target;
         setChecked((prevState) => ({
@@ -40,6 +54,13 @@ const CreateSupplierPage = () => {
             [name]: checked
         }));
     };
+
+    const procurementCategories = [
+        { label: 'Raw Materials', value: 'raw-materials' },
+        { label: 'Packaging', value: 'packaging' },
+        { label: 'Machinery', value: 'machinery' },
+        { label: 'Services', value: 'services' }
+    ];
     const renderStepContent = () => {
         switch (currentStep) {
             case 1:
@@ -76,8 +97,15 @@ const CreateSupplierPage = () => {
                                 <input id="manufacturerName" type="text" value={manufacturerName} onChange={(e) => setManufacturerName(e.target.value)} className="p-inputtext w-full" placeholder="Enter Factory Name" />
                             </div>
                             <div className="field col-6">
-                                <label htmlFor="manufacturerName">Supplier Procurement Category</label>
-                                <input id="manufacturerName" type="text" value={manufacturerName} onChange={(e) => setManufacturerName(e.target.value)} className="p-inputtext w-full" placeholder="Enter Manufacturing Name" />
+                                <label htmlFor="procurementCategory">Supplier Procurement Category</label>
+                                <Dropdown
+                                    id="procurementCategory"
+                                    value={selectedProcurementCategory}
+                                    options={procurementCategories}
+                                    onChange={(e) => setSelectedProcurementCategory(e.value)}
+                                    placeholder="Select Procurement Category"
+                                    className="w-full"
+                                />
                             </div>
                             <div className="field col-6">
                                 <label htmlFor="manufacturerName">Supplier Category</label>
@@ -160,7 +188,7 @@ const CreateSupplierPage = () => {
 
     return (
         <div className="md:p-4 md:mx-5 md:my-5">
-            <Stepper />
+            <Stepper currentStep={currentStep} completedSteps={completedSteps} />
             <div className="p-card">
                 {/* Progress Bar */}
                 {/* <ProgressBar value={(currentStep / 3) * 100} /> */}
